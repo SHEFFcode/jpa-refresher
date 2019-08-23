@@ -12,10 +12,18 @@ public class Review {
     private String description;
     private String rating;
 
+    @ManyToOne
+    private Course course;
+
     public Review() { }
 
     public Review(String description) {
         this.description = description;
+    }
+
+    public Review(String description, String rating) {
+        this.description = description;
+        this.rating = rating;
     }
 
     public String getDescription() {
@@ -36,6 +44,14 @@ public class Review {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     @Override

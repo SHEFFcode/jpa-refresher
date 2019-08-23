@@ -1,6 +1,7 @@
 package com.sheffmachine.advancedjpa.repositories;
 
 import com.sheffmachine.advancedjpa.entities.Course;
+import com.sheffmachine.advancedjpa.entities.Review;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -9,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -18,6 +23,9 @@ public class CourseRepositoryTest {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     CourseRepository courseRepository;
+
+    @Autowired
+    EntityManager em;
 
     @Test
     public void findById_basic() {
@@ -54,5 +62,20 @@ public class CourseRepositoryTest {
     @Test
     public void playWithEntityManager() {
         courseRepository.playWithEntityManager();
+    }
+
+    @Test
+    @Transactional
+    public void retireveReviewsForCourse() {
+        Course course = courseRepository.findById(10001L);
+        List<Review> reviews = course.getReviews();
+        logger.info("The reviews are -> {}", reviews);
+    }
+
+    @Test
+    @Transactional
+    public void retireveCourseForAReview() {
+        Review review = em.find(Review.class,50001L);
+        logger.info("The reviews are -> {}", review.getCourse());
     }
 }
