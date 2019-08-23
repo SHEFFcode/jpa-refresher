@@ -22,6 +22,17 @@ public class AdvancedjpaApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        // Get the course
+        Course course = courseRepository.findById(10001L);
+        // Update the details
+        course.setName("Microservices");
+        courseRepository.save(course);
 
+        course = courseRepository.findById(10001L);
+//        logger.info("Course 10001 is --> {}", course);
+//        courseRepository.deleteById(10001L);
+//        logger.info("Inserting course -> {}", courseRepository.save(new Course("Microservices")));
+
+        courseRepository.playWithEntityManager();
     }
 }

@@ -1,6 +1,8 @@
 package com.sheffmachine.advancedjpa.repositories;
 
 import com.sheffmachine.advancedjpa.entities.Course;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +12,8 @@ import javax.persistence.EntityManager;
 @Repository
 @Transactional
 public class CourseRepository {
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     EntityManager entityManager;
 
@@ -33,5 +37,21 @@ public class CourseRepository {
         }
 
         return course;
+    }
+
+    public void playWithEntityManager() {
+        logger.info("Play with entity manager start...");
+        Course newCourse = new Course("Web Service");
+        entityManager.persist(newCourse);
+
+        Course newCourse2 = new Course("Another web service Angular");
+        entityManager.persist(newCourse2);
+
+        entityManager.flush();
+
+        entityManager.detach(newCourse2);
+
+        newCourse2.setName("Web Service");
+
     }
 }

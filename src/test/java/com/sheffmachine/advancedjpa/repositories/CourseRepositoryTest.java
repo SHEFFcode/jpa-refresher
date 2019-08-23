@@ -50,4 +50,9 @@ public class CourseRepositoryTest {
         assertEquals("Microservices", course.getName());
 
     }
+
+    @Test
+    public void playWithEntityManager() {
+        courseRepository.playWithEntityManager();
+    }
 }
