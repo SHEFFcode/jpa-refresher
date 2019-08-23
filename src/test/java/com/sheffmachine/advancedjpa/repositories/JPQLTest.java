@@ -27,7 +27,7 @@ public class JPQLTest {
 
     @Test
     public void qpql_findById_basic() {
-        Query query = entityManager.createQuery("select c from Course c");
+        Query query = entityManager.createNamedQuery("query_get_all_courses");
         List resultList = query.getResultList();
         logger.info("Query is select c from Course c -> {}", resultList);
     }
@@ -41,7 +41,7 @@ public class JPQLTest {
 
     @Test
     public void jpql_findById_basic_where() {
-        TypedQuery<Course> result = entityManager.createQuery("select c from Course c where name like '%Angular'", Course.class);
+        TypedQuery<Course> result = entityManager.createNamedQuery("query_get_angular_courses", Course.class);
         List<Course> resultList = result.getResultList();
         logger.info("Query is select c from Course c where name like '%Angular' -> {}", resultList);
     }

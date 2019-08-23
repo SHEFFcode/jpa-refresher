@@ -44,14 +44,17 @@ public class CourseRepository {
         Course newCourse = new Course("Web Service");
         entityManager.persist(newCourse);
 
-        Course newCourse2 = new Course("Another web service Angular");
-        entityManager.persist(newCourse2);
+        Course course2 = findById(10001L);
+        course2.setName("Web Service Updated");
 
-        entityManager.flush();
-
-        entityManager.detach(newCourse2);
-
-        newCourse2.setName("Web Service");
+//        Course newCourse2 = new Course("Another web service Angular");
+//        entityManager.persist(newCourse2);
+//
+//        entityManager.flush();
+//
+//        entityManager.detach(newCourse2);
+//
+//        newCourse2.setName("Web Service");
 
     }
 }

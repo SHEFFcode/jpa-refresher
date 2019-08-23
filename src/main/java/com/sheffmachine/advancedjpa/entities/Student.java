@@ -7,28 +7,21 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@NamedQueries(value = {
-        @NamedQuery(name = "query_get_all_courses", query = "select c from Course c"),
-        @NamedQuery(name = "query_get_angular_courses", query = "select c from Course c where name like '%Angular'")
-})
-@Table(name = "Course")
-public class Course {
+@Table
+public class Student {
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @UpdateTimestamp
-    private LocalDateTime lastUpdatedDate;
+    @OneToOne(fetch = FetchType.LAZY)
+    private Passport passport;
 
-    @CreationTimestamp
-    private LocalDateTime createdDate;
+    public Student() { }
 
-    public Course() { }
-
-    public Course(String name) {
+    public Student(String name) {
         this.name = name;
     }
 
@@ -44,9 +37,17 @@ public class Course {
         return id;
     }
 
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
+    }
+
     @Override
     public String toString() {
-        return "Course{" +
+        return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

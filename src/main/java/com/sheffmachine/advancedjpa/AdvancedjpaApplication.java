@@ -2,6 +2,7 @@ package com.sheffmachine.advancedjpa;
 
 import com.sheffmachine.advancedjpa.entities.Course;
 import com.sheffmachine.advancedjpa.repositories.CourseRepository;
+import com.sheffmachine.advancedjpa.repositories.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class AdvancedjpaApplication implements CommandLineRunner {
     @Autowired
     CourseRepository courseRepository;
 
+    @Autowired
+    StudentRepository studentRepository;
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public static void main(String[] args) {
@@ -23,16 +27,18 @@ public class AdvancedjpaApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // Get the course
-        Course course = courseRepository.findById(10001L);
+//        Course course = courseRepository.findById(10001L);
         // Update the details
-        course.setName("Microservices");
-        courseRepository.save(course);
+//        course.setName("Microservices");
+//        courseRepository.save(course);
 
-        course = courseRepository.findById(10001L);
+//        course = courseRepository.findById(10001L);
 //        logger.info("Course 10001 is --> {}", course);
 //        courseRepository.deleteById(10001L);
 //        logger.info("Inserting course -> {}", courseRepository.save(new Course("Microservices")));
 
-        courseRepository.playWithEntityManager();
+//        courseRepository.playWithEntityManager();
+
+        studentRepository.saveStudentWithPassport();
     }
 }
