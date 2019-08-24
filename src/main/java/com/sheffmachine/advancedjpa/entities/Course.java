@@ -15,6 +15,7 @@ import java.util.List;
         @NamedQuery(name = "query_get_angular_courses", query = "select c from Course c where name like '%Angular'")
 })
 @Table(name = "Course")
+@Cacheable
 public class Course {
     @Id
     @GeneratedValue
