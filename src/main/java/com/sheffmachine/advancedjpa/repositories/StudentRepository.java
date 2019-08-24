@@ -1,5 +1,6 @@
 package com.sheffmachine.advancedjpa.repositories;
 
+import com.sheffmachine.advancedjpa.entities.Course;
 import com.sheffmachine.advancedjpa.entities.Passport;
 import com.sheffmachine.advancedjpa.entities.Student;
 import org.slf4j.Logger;
@@ -48,5 +49,26 @@ public class StudentRepository {
         newStudent.setPassport(passport);
 
         entityManager.persist(newStudent);
+    }
+
+    public void insertHardCodedStudentAndCourse() {
+        Student student = new Student("Jack");
+        Course course = new Course("A super duper course");
+
+        entityManager.persist(student);
+        entityManager.persist(course);
+
+        student.addCourse(course);
+        course.addStudent(student);
+
+        entityManager.persist(student);
+    }
+
+    public void insertStudentAndCourse(Student student, Course course) {
+        student.addCourse(course);
+        course.addStudent(student);
+
+        entityManager.persist(student);
+        entityManager.persist(course);
     }
 }

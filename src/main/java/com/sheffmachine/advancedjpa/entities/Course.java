@@ -1,5 +1,6 @@
 package com.sheffmachine.advancedjpa.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -31,6 +32,10 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Review> reviews = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "courses")
+    @JsonIgnore
+    private List<Student> students = new ArrayList<>();
+
     public Course() { }
 
     public Course(String name) {
@@ -59,6 +64,18 @@ public class Course {
 
     public void removeReview(Review review) {
         this.reviews.remove(review);
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void addStudent(Student student) {
+        this.students.add(student);
+    }
+
+    public void removeStudents(Student student) {
+        this.students.remove(student);
     }
 
     @Override

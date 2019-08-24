@@ -60,4 +60,12 @@ public class StudentRepositoryTest {
 
         //Only after all the changes succeed, will this be stored to the DB.
     }
+
+    @Test
+    @Transactional
+    public void retrieveStudentAndCourses() {
+        Student student1 = em.find(Student.class, 20001L);
+        logger.info("Student is -> {}", student1);
+        logger.info("Courses are -> {}", student1.getCourses());
+    }
 }

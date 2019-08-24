@@ -1,7 +1,7 @@
 package com.sheffmachine.advancedjpa;
 
 import com.sheffmachine.advancedjpa.entities.Course;
-import com.sheffmachine.advancedjpa.entities.Review;
+import com.sheffmachine.advancedjpa.entities.Student;
 import com.sheffmachine.advancedjpa.repositories.CourseRepository;
 import com.sheffmachine.advancedjpa.repositories.StudentRepository;
 import org.slf4j.Logger;
@@ -10,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 @SpringBootApplication
 public class AdvancedjpaApplication implements CommandLineRunner {
@@ -45,9 +42,12 @@ public class AdvancedjpaApplication implements CommandLineRunner {
 
 //        studentRepository.saveStudentWithPassport();
 
-        courseRepository.addReviewForCourse(10003L, new ArrayList<>(Arrays.asList(
-                new Review("Not too bad", "4"),
-                new Review("Excellent!!!!", "5")
-                )));
+//        courseRepository.addReviewForCourse(10003L, new ArrayList<>(Arrays.asList(
+////                new Review("Not too bad", "4"),
+////                new Review("Excellent!!!!", "5")
+////                )));
+
+//        studentRepository.insertHardCodedStudentAndCourse();
+        studentRepository.insertStudentAndCourse(new Student("Jack"), new Course("Super advanced course"));
     }
 }
